@@ -9,8 +9,9 @@ function login(user) {
 	$("#head_account").removeClass('hidden');
 	$("#head_signin").addClass("hidden");
 
-	//hide the login screen
+	//hide the login/registration screens
 	$("#signin").addClass('hidden');
+	$("#account").addClass('hidden');
 
 
 }
