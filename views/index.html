@@ -38,7 +38,7 @@
 							<div class="collapse navbar-collapse" id="myNavbar">
 								<ul class="nav navbar-nav navbar-right">
 									<li class="active" id="head_signin"><a href="#signin" onclick="showSignin()">Sign In</a></li>
-									<li class="hidden" id="head_account"><a href="#account" onclick="">My Account</a></li>
+									<li class="hidden" id="head_account"><a href="#account" onclick="showAccount()">My Account</a></li>
 									<li class=""><a href="#main-header">Home</a></li>
 									<li class=""><a href="#contact">Contact Us</a></li>
 								</ul>
@@ -111,7 +111,7 @@
 								</div>
 								<div class="col-md-1">
 									<div class="brn-btn">
-										<a href="#account" onclick="showRegistration()" class="btn btn-primary btn-submit">Register</a>
+										<a href="#registration" onclick="showRegistration()" class="btn btn-primary btn-submit">Register</a>
 									</div>
 								</div>
 							</div>
@@ -132,11 +132,12 @@
 			</div>
 		</section>
 
-		<!--/ HEADER-->
-		<section id="account" class="section-padding wow fadeIn delay-05s hidden">
-			<div class="container">
-				<div class="row justify-content-md-center">
-					<div ng-controller="UserController">
+		<div ng-controller="UserController">
+
+			<!--/ HEADER-->
+			<section id="registration" class="section-padding wow fadeIn delay-05s hidden">
+				<div class="container">
+					<div class="row justify-content-md-center">
 						<br/>Please enter the following details to register an account:
 						<br/>
 						<br/>
@@ -217,24 +218,82 @@
 
 							<button type="submit" class="btn btn-primary btn-submit">Register</button>
 						</form>
-
-						<div>
-							<br/>Signed in as: {{ data.object[0].email }}
-							<br/>
-							<br/> Email : {{ user.email }}
-							<br/> Password: {{ user.pw }}
-							<br/>
-							<br/> Status : {{ data.status.code }}
-							<br/> Message: {{ data.status.messages }}
-
-						</div>
-
 					</div>
 				</div>
-			</div>
 
-		</section>
+			</section>
 
+			<section id="account" class="section-padding wow fadeIn delay-05s hidden">
+				<div class="container">
+					<div class="row justify-content-md-center">
+
+						<br/>User Details:
+						<br/>
+						<br/>
+
+						<div class="row justify-content-md-center">
+							<div class="col-md-2">
+								<div class="form-group">
+									User ID:
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									{{user.id}}
+								</div>
+							</div>
+						</div>
+						<div class="row justify-content-md-center">
+							<div class="col-md-2">
+								<div class="form-group">
+									First Name
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									{{user.firstName}}
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									Surname
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									{{user.lastName}}
+								</div>
+							</div>
+						</div>
+						<div class="row justify-content-md-center">
+							<div class="col-md-2">
+								<div class="form-group">
+									Date of Birth
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									{{user.dob}}
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									Email
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									{{user.email}}
+								</div>
+							</div>
+						</div>
+						<button type="" ng-click="getUser()" class="btn btn-primary btn-submit">Done</button>
+					</div>
+
+				</div>
+
+			</section>
+		</div>
 		<section id="feature" class="section-padding wow fadeIn delay-05s">
 			<div class="container">
 				<div class="row">
@@ -334,12 +393,17 @@
 	<script src="../lib/jquery.bxslider.min.js"></script>
 	<script src="../lib/custom.js"></script>
 	<script src="../lib/less.min.js"></script>
-	<script src="../node_modules/angular/angular.min.js"></script>
-	<script src="../scripts/controllers/PrimaryController.js"></script>
-	<script src="../controllers/SignonController.js"></script>
-	<script src="../controllers/UserController.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script src="../node_modules/angular-route/angular-route.js"></script>
+
+	<script src="../scripts/app.js"></script>
+	<script src="../scripts/controllers/SignonController.js"></script>
+	<script src="../scripts/controllers/UserController.js"></script>
 	<script src="../scripts/directives/LoginDirective.js"></script>
 	<script src="../scripts/directives/UserDirective.js"></script>
+	<script src="../scripts/services/UserService.js"></script>
+	<script src="../scripts/services/github.js"></script>
+
 
 </body>
 

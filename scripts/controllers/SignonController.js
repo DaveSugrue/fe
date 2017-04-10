@@ -1,6 +1,8 @@
 (function () {
 
-	var SignonController = function ($scope, $http) {
+	var module = angular.module("startPage");
+
+	var SignonController = function ($scope, userService, github) {
 		$scope.message = "Hey there";
 
 		$scope.user = {
@@ -18,12 +20,8 @@
 						$scope.data = response.data;
 					});
 		*/
+		/*
 		$scope.signin = function () {
-			/*$http.post("http://desktop:8080/login?email=dave.sugrue@gmail.com&pw=888888")
-				//$http.get("https://api.github.com/users/davesugrue")
-				.then(function (response) {
-					$scope.data = response.data;
-				});*/
 			$http.post("http://192.168.0.9:8090/login/", $scope.user)
 				//$http.get("https://api.github.com/users/davesugrue")
 				.then(function (response) {
@@ -31,11 +29,45 @@
 
 					if (response.data.status.code === 0) {
 						$scope.user = $scope.data.object[0];
-						login($scope.user);
+						signon($scope.user);
 					}
 				});
 
 		};
+*/
+		/*
+		var onLoginComplete = function (data) {
+			$scope.user = data.object[0];
+			signon($scope.user);
+		};
+
+		var onError = function (reason) {
+			$scope.error = "Could not fetch user";
+		};
+
+		userService.login($scope.user)
+			.then(onLoginComplete, onError);
+
+
+
+*/
+		var onUserComplete = function (data) {
+			$scope.user = data;
+			github.getRepos($scope.user)
+				.then(onRepos, onError);
+		};
+
+		var onRepos = function (data) {
+			$scope.repos = data;
+		};
+
+		var onError = function (reason) {
+			$scope.error = "Could not fetch user";
+		};
+
+		github.getUser($scope.username)
+			.then(onUserComplete, onError);
+
 	};
 
 	app.controller("SignonController", ["$scope", "$http", SignonController]);

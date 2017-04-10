@@ -1,4 +1,4 @@
-function login(user) {
+function signon(user) {
 
 	var userName = user.firstName + " " + user.lastName;
 	var signoutButton = "<a href='#main-header' onclick='logout()'>(sign out)</a>";
@@ -11,7 +11,7 @@ function login(user) {
 
 	//hide the login/registration screens
 	$("#signin").addClass('hidden');
-	$("#account").addClass('hidden');
+	$("#registration").addClass('hidden');
 
 
 }

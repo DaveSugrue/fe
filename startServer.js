@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/views/', function (req, res) {
-    console.log("post received: " + req.body);
+	console.log("post received: " + req.body);
 });
 
 
